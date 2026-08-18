@@ -176,7 +176,7 @@ Both splits inherit the current pane's working directory.
 | `Ctrl-a L` | Resize pane right by 5 cells |
 | `Ctrl-a m` | Toggle pane zoom (maximize / restore) |
 
-Resize keys are repeatable -- hold prefix once, then press `H/J/K/L` multiple times.
+Resize keys are repeatable: hold prefix once, then press `H/J/K/L` multiple times.
 
 ### Copy Mode (Vim-style)
 
@@ -226,7 +226,7 @@ The `tmux.conf` file is organized into clearly labeled sections. Each section st
 
 ## Theme
 
-The configuration uses the **Aura Dracula Spirit (Soft)** color palette — exact colors from the
+The configuration uses the **Aura Dracula Spirit (Soft)** color palette, exact colors from the
 VS Code theme by [JoseMurilloc](https://github.com/JoseMurilloc/aura-spirit-dracula), unified
 across kitty + tmux + nvim:
 
@@ -247,7 +247,7 @@ across kitty + tmux + nvim:
 ### Status Bar Layout
 
 ```
-LEFT:  (empty — minimal look)
+LEFT:  (empty, minimal look)
 RIGHT: [ window name ] [ prefix indicator ] [ session name ]
 ```
 
