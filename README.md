@@ -188,7 +188,7 @@ Resize keys are repeatable: hold prefix once, then press `H/J/K/L` multiple time
 | `y` | Yank (copy) selection and exit |
 | `q` | Exit copy mode without copying |
 
-Mouse drag selects text but does **not** auto-copy. You must press `y` to yank.
+Mouse drag selects text and copies it automatically on release, same as pressing `y`.
 
 ### Alt Key Shortcuts (No Prefix)
 
