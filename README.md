@@ -1,6 +1,6 @@
 # Tmux Configuration
 
-A clean, well-commented tmux configuration with vim-style keybindings, intuitive splits, and the **TokyoNight Moon** color scheme.
+A clean, well-commented tmux configuration with vim-style keybindings, intuitive splits, and the **Aura Dracula Spirit (Soft)** color scheme, unified across kitty + tmux + nvim.
 
 **Tmux version:** 3.5a
 **Config location:** `~/.config/tmux/tmux.conf`
@@ -226,21 +226,23 @@ The `tmux.conf` file is organized into clearly labeled sections. Each section st
 
 ## Theme
 
-The configuration uses the **TokyoNight Moon** color palette:
+The configuration uses the **Aura Dracula Spirit (Soft)** color palette — exact colors from the
+VS Code theme by [JoseMurilloc](https://github.com/JoseMurilloc/aura-spirit-dracula), unified
+across kitty + tmux + nvim:
 
 | Color | Hex | Usage |
 |-------|-----|-------|
-| Background | `#222436` | Status bar, window backgrounds |
-| Foreground | `#c8d3f5` | Default text |
-| Blue | `#82aaff` | Active pane border, window index, clock |
-| Cyan | `#86e1fc` | Active window path, prefix-off indicator |
-| Magenta | `#c099ff` | Checkmark icon, prefix-on indicator |
-| Green | `#c3e88d` | Available for customization |
-| Yellow | `#ffc777` | Available for customization |
-| Red/Pink | `#ff757f` | Available for customization |
-| Orange | `#ff9e64` | Available for customization |
-| Gray | `#3a3f5a` | Inactive pane borders, status segments |
-| Black | `#1b1d2b` | Dark backgrounds |
+| Background | `#191521` | Status bar, window backgrounds |
+| Foreground | `#edecee` | Default text |
+| Blue/Purple | `#a277ff` | Active pane border, window index, clock |
+| Cyan | `#82e2ff` | Active window path, prefix-off indicator |
+| Magenta/Purple | `#a277ff` | Checkmark icon, prefix-on indicator |
+| Pink | `#f694ff` | Available for customization |
+| Green | `#61ffca` | Available for customization |
+| Yellow/Orange | `#ffca85` | Available for customization |
+| Red | `#ff6767` | Available for customization |
+| Gray | `#2e2b38` | Inactive pane borders, status segments |
+| Black | `#14111b` | Dark backgrounds |
 
 ### Status Bar Layout
 
