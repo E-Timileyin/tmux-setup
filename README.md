@@ -1,6 +1,8 @@
 # Tmux Configuration
 
-A clean, well-commented tmux configuration with vim-style keybindings, intuitive splits, and the **Aura Dracula Spirit (Soft)** color scheme, unified across kitty + tmux + nvim.
+A well-commented tmux configuration with vim-style keybindings, intuitive splits, and the **Akaza** color palette.
+
+Complete keybinding reference: [KEYS.md](KEYS.md).
 
 **Tmux version:** 3.5a
 **Config location:** `~/.config/tmux/tmux.conf`
@@ -21,6 +23,8 @@ A clean, well-commented tmux configuration with vim-style keybindings, intuitive
   - [Pane Resizing](#pane-resizing)
   - [Copy Mode (Vim-style)](#copy-mode-vim-style)
   - [Alt Key Shortcuts (No Prefix)](#alt-key-shortcuts-no-prefix)
+  - [Session Save and Load](#session-save-and-load)
+- [Full Key Reference](#full-key-reference)
 - [Configuration Sections](#configuration-sections)
 - [Theme](#theme)
 - [Customization Guide](#customization-guide)
@@ -132,7 +136,7 @@ All keybindings use `Ctrl-a` as the prefix unless noted otherwise. Press `Ctrl-a
 
 | Keys | Action |
 |------|--------|
-| `Ctrl-a Ctrl-c` | Create a new session |
+| `Ctrl-a N` | Create a new session |
 | `Ctrl-a S` | Switch session (interactive tree view) |
 | `Ctrl-a $` | Rename current session |
 | `Ctrl-a X` | Kill current session (with confirmation) |
@@ -164,7 +168,12 @@ Both splits inherit the current pane's working directory.
 | `Ctrl-a j` | Move to pane below |
 | `Ctrl-a k` | Move to pane above |
 | `Ctrl-a l` | Move to right pane |
-| `Alt + h/j/k/l` | Same as above, no prefix needed |
+| `Ctrl + h/j/k/l` | Same as above, no prefix, vim-aware |
+| `Alt + h/j/k/l` | Same as above, alternate modifier, vim-aware |
+
+`Ctrl` and `Alt` navigation is vim-aware: if the pane is running nvim, vim, fzf, or view, the key is forwarded so it moves between editor splits instead. Otherwise tmux moves between panes.
+
+`Ctrl-l` now moves right instead of clearing the screen. Use `Ctrl-a Ctrl-l` to clear.
 
 ### Pane Resizing
 
@@ -199,6 +208,24 @@ These work instantly without pressing the prefix key:
 | `Alt + h/j/k/l` | Switch panes (vim directions) |
 | `Alt + 1-9` | Jump to window by number |
 
+### Session Save and Load
+
+Backed by `tmux-resurrect` and `tmux-continuum`. Nothing restores when tmux starts; you choose what to load.
+
+| Keys | Action |
+|------|--------|
+| `Ctrl-a Ctrl-s` | Save the session tree under a name |
+| `Ctrl-a Ctrl-r` | Menu: load a named save, or the latest autosave |
+| `Ctrl-a Ctrl-x` | Menu: delete a named save |
+
+Continuum autosaves every 15 minutes as a crash backup and never overwrites named saves, which live in `~/.local/share/tmux/resurrect/named/`.
+
+---
+
+## Full Key Reference
+
+[KEYS.md](KEYS.md) lists every binding, including the stock tmux defaults this config leaves intact, plus the shell commands and the known gotchas.
+
 ---
 
 ## Configuration Sections
@@ -218,41 +245,47 @@ The `tmux.conf` file is organized into clearly labeled sections. Each section st
 | **Pane Resizing** | Uppercase `H/J/K/L` for repeatable resizing |
 | **Window Navigation** | Swap windows with `<` and `>` |
 | **Session Management** | Create, switch, and kill sessions |
+| **Seamless nvim to tmux Navigation** | Vim-aware `Ctrl`/`Alt` h/j/k/l movement |
 | **Alt Key Shortcuts** | Prefix-free pane and window switching |
 | **Copy Mode** | Vim keybindings for copy mode |
-| **Theme** | TokyoNight Moon color palette and status bar |
+| **Theme** | Akaza color palette |
+| **Plugins** | Session save and restore via resurrect and continuum |
 
 ---
 
 ## Theme
 
-The configuration uses the **Aura Dracula Spirit (Soft)** color palette, exact colors from the
-VS Code theme by [JoseMurilloc](https://github.com/JoseMurilloc/aura-spirit-dracula), unified
-across kitty + tmux + nvim:
+The configuration uses the **Akaza** palette (Demon Slayer inspired), defined as `thm_*`
+variables at the top of the **THEME** section:
 
-| Color | Hex | Usage |
-|-------|-----|-------|
-| Background | `#191521` | Status bar, window backgrounds |
-| Foreground | `#edecee` | Default text |
-| Blue/Purple | `#a277ff` | Active pane border, window index, clock |
-| Cyan | `#82e2ff` | Active window path, prefix-off indicator |
-| Magenta/Purple | `#a277ff` | Checkmark icon, prefix-on indicator |
-| Pink | `#f694ff` | Available for customization |
-| Green | `#61ffca` | Available for customization |
-| Yellow/Orange | `#ffca85` | Available for customization |
-| Red | `#ff6767` | Available for customization |
-| Gray | `#2e2b38` | Inactive pane borders, status segments |
-| Black | `#14111b` | Dark backgrounds |
+| Variable | Hex | Usage |
+|----------|-----|-------|
+| `thm_bg` | `default` | Status bar background (transparent, matches terminal) |
+| `thm_fg` | `#F1F5F9` | Default status text |
+| `thm_white` | `#FFFFFF` | Message text, `C-a` pill |
+| `thm_gray` | `#1E2330` | Status segment backgrounds |
+| `thm_black` | `#12131A` | Dark backgrounds |
+| `thm_cyan` | `#00E5FF` | Active pane border, window index, clock |
+| `thm_pink` | `#FF2A8A` | Checkmark, window activity, mode highlight |
+| `thm_comment` | `#94A3B8` | Inactive window text |
+| `thm_border` | `#2D3242` | Inactive pane border |
+| `thm_border_active` | `#00E5FF` | Active pane border |
+| `thm_magenta` | `#E6007E` | Defined, unused by default |
+| `thm_blue` | `#38BDF8` | Defined, unused by default |
+| `thm_yellow` | `#FFD166` | Defined, unused by default |
+| `thm_red` | `#F43F5E` | Defined, unused by default |
+| `thm_green` | `#34D399` | Defined, unused by default |
 
 ### Status Bar Layout
 
 ```
-LEFT:  (empty, minimal look)
-RIGHT: [ window name ] [ prefix indicator ] [ session name ]
+LEFT:    (empty)
+WINDOWS: index + name + checkmark (active), muted index (inactive)
+RIGHT:   [ C-a pill ] [ last 2 path segments ] [ session name ]
 ```
 
-- The prefix indicator changes color when `Ctrl-a` is pressed (cyan -> magenta).
-- The active window shows its index, a checkmark, and the last two directories of the pane's path.
+- The `C-a` pill appears only while the prefix is held.
+- The path segment shows the last two directories of the active pane.
 
 ---
 
@@ -275,7 +308,7 @@ All colors are defined as variables at the top of the **THEME** section. Update 
 ```tmux
 thm_bg="#1a1b26"      # your background
 thm_fg="#a9b1d6"      # your foreground
-thm_blue="#7aa2f7"    # your accent color
+thm_cyan="#7aa2f7"    # your accent color
 # ... etc
 ```
 
